@@ -5,6 +5,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <fstream>
 
 //tensorflow
 //#include "tensorflow/core/public/session.h"
@@ -35,9 +36,9 @@
 #include <opencv2/core.hpp>
 #include "opencv2/opencv.hpp"
 
-#include "lanms.h"
 #include "utils.h"
 #include "text_box.h"
+#include "polys.h"
 
 using namespace tensorflow;
 
@@ -51,7 +52,7 @@ class SceneTextDetector{
     
     bool init(const std::string);
     int run_graph(std::string image_filename);
-    int run_graph(const cv::Mat& image);
+    int run_graph(const cv::Mat& image, std::vector<TextBox>& text_boxes);
 
   private:
     std::vector<TextBox> detect(cv::Mat& score_map, cv::Mat& geometry_map, float, float ,float);

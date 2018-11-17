@@ -1,6 +1,6 @@
 #include "text_box.h"
 
-TextBox::TextBox(std::vector<cv::Point>& points, std::string& text){
+TextBox::TextBox(std::vector<cv::Point>& points, std::string text){
   this->points = points;
   this->text = text;
 }
@@ -18,3 +18,14 @@ void TextBox::get_rectangle_box(cv::Point& p1, cv::Point& p2){
   p2.x = maxx;
   p2.y = maxy;
 }
+
+std::ostream &operator<<(std::ostream &os, TextBox &m) { 
+  std::vector<cv::Point> points = m.get_points();
+  os<<"oriented box: ";
+  for(int i = 0; i < points.size(); i++){
+    os<<points[i]<<" ";
+  }
+  os<<" text: "<<m.get_text()<<std::endl;
+  return os;
+}
+

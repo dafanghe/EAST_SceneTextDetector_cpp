@@ -1,6 +1,10 @@
 #include "utils.h"
 
-void resize_image_max_len(const cv::Mat& image, cv::Mat& resized_image, float& ratio_h, float& ratio_w, int max_side_len){
+void resize_image_max_len(const cv::Mat& image,
+                          cv::Mat& resized_image,
+                          float& ratio_h,
+                          float& ratio_w,
+                          int max_side_len){
   int height = image.rows;
   int width = image.cols;
   float ratio = 1;
@@ -16,7 +20,10 @@ void resize_image_max_len(const cv::Mat& image, cv::Mat& resized_image, float& r
   ratio_w = float(resize_w)/width;
 }
 
-void resize_image_fix_height(const cv::Mat& image, cv::Mat& resized_image, float& ratio, int fixed_height){
+void resize_image_fix_height(const cv::Mat& image,
+                             cv::Mat& resized_image,
+                             float& ratio,
+                             int fixed_height){
   int height = image.rows;
   int width = image.cols;
   ratio = float(fixed_height)/height;
@@ -25,7 +32,9 @@ void resize_image_fix_height(const cv::Mat& image, cv::Mat& resized_image, float
   cv::resize(image, resized_image, cv::Size(resize_w, resize_h));  
 }
 
-void pad_image_width(const cv::Mat& image, cv::Mat& padded_image, int target_width){
+void pad_image_width(const cv::Mat& image,
+                     cv::Mat& padded_image,
+                     int target_width){
   int height = image.rows;
   int width = image.cols;
   int borderType = cv::BORDER_CONSTANT;

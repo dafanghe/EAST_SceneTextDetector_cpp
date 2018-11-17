@@ -31,16 +31,21 @@ bool SceneTextDetector::init(const std::string frozen_graph_filename){
   nms_th = 0.2;
 }
 
-int SceneTextDetector::run_graph(const cv::Mat& image){
+int SceneTextDetector::run_graph(const cv::Mat& image, std::vector<TextBox>& text_boxes){
   cv::Mat resized_image;
   float ratio_h=0, ratio_w=0;
-  resize_image_max_len(image, resized_image, ratio_h, ratio_w);
+  //std::cout<<image.rows<<" "<<image.cols<<std::endl;
+  resize_image_max_len(image, resized_image, ratio_h, ratio_w, 768);
+  //std::cout<<resized_image.rows<<" "<<resized_image.cols<<std::endl;
+  //std::cout<<ratio_h<<" "<<ratio_w<<std::endl;
   
   auto input_tensor = cv_mat_to_tensor(resized_image);
 
   std::vector<Tensor> outputs;
-  Status run_status = this->session->Run({{this->input_layer, input_tensor}},
-                                   this->output_layers, {}, &outputs);
+  Status run_status = this->session->Run(
+      {{this->input_layer, input_tensor}},
+      this->output_layers, {}, &outputs);
+
   if (!run_status.ok()) {
     LOG(ERROR) << "Running model failed: " << run_status;
     return -1;
@@ -53,23 +58,28 @@ int SceneTextDetector::run_graph(const cv::Mat& image){
   //auto out_text_boxes = outputs[0];
   auto detection_boxes = outputs[0].tensor<float, 2>();
   int num_box = detection_boxes.dimension(0);
-  for(int i=0; i<num_box; i++){
-    std::cout<<i<<" ";
-    for(int j=0; j<9; j++)
-      std::cout<<detection_boxes(i, j)<<" ";
-    std::cout<<std::endl;
-  }
+  int dim = detection_boxes.dimension(1);
+  int num_data = num_box * dim; 
 
   float* data = detection_boxes.data();
-  for(int i=0; i<20; i++) std::cout<<data[i]<<" ";
+
+  std::vector<poly_with_score> results = nonmax_suppresion(
+      data, num_box, nms_th);
+  
+  //convert to text box
+  for(int i=0; i<results.size(); i++){
+    std::vector<cv::Point> points;
+    auto poly = results[i].poly.outer();
+    std::string text; //no text yet
+    for(int j=0; j<4; j++)
+      points.push_back(
+          cv::Point(int(poly[j].get<0>()/ratio_w),
+            int(poly[j].get<1>()/ratio_h)));
+    text_boxes.push_back(TextBox(points, text));
+  }
+  return 1;
 }
 
-
-std::vector<TextBox> SceneTextDetector::detect(cv::Mat& score_map, cv::Mat& geometry_map, float score_map_thresh, float box_thresh, float nms_thresh){
-  std::vector<TextBox> res;
-
-  return res;
-}
 
 
 bool SceneTextDetector::init_graph(const std::string& frozen_graph_filename){
