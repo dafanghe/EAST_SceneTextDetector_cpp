@@ -50,7 +50,7 @@ It will create an excutable named **DetectText** in bin folder.
 Download the pretrained detector model and put it in model/
 
 ./DetectText --detector_graph='model/Detector_model.pb' \
-   --image_filename='test_images/test_img1.jpg' --mode='detect' --output_filename='results/output_image.jpg'
+   --input_dir=/path/to/test/images/ --output_dir=/path/to/write/output/directory
 
 # Model Description
 The detector training is based on the public [repo](https://github.com/argman/EAST) and also the proposed framework in the [paper](https://arxiv.org/abs/1809.03050).
