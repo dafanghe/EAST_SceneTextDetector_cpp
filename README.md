@@ -4,10 +4,11 @@ It detects text from natural scene images.
 To combine this detector with scene text recognizer for a full pipeline, checkout my another [repo](https://github.com/dafanghe/DeepSceneTextReader).
 
 <p align="center">
-  <img src="images/1.jpg" width=1280 height=720>
-  <img src="images/2.jpg" width=288 height=200>
-  <img src="images/3.jpg" width=256 height=200>
-  <img src="images/4.jpg" width=256 height=200>
+  <img src="images/img_9120.jpg" width=1280 height=720>
+  <img src="images/img_9132.jpg" width=640 height=360>
+  <img src="images/img_9148.jpg" width=640 height=360>
+  <img src="images/img_9162.jpg" width=640 height=360>
+  <img src="images/img_9185.jpg" width=640 height=360>
 </p>
 
 

@@ -94,8 +94,8 @@ int main(int argc, char** argv) {
       ofs << out.substr(0, out.size()-1) << std::endl;
     }
     
-    output_filename = output_dir + outname_prefix + ".jpg";
-    cv::imwrite(output_filename, image);
+    //output_filename = output_dir + outname_prefix + ".jpg";
+    //cv::imwrite(output_filename, image);
   }
 
   return 0;
