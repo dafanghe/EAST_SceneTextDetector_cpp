@@ -53,7 +53,8 @@ Download the pretrained detector model and put it in model/
    --input_dir=/path/to/test/images/ --output_dir=/path/to/write/output/directory
 
 # Model Description
-The detector training is based on the public [repo](https://github.com/argman/EAST) and also the proposed framework in the [paper](https://arxiv.org/abs/1809.03050).
+The detector training is based on the public [repo](https://github.com/argman/EAST) and also the proposed framework in the
+paper[TextContourNet: a Flexible and Effective Framework for Improving Scene Text Detection Architecture with a Multi-task Cascade](https://arxiv.org/abs/1809.03050).
 
 The python script for converting the trained model to the frozen graph will be provided.
 Basically the frozen graph output is all the decoded text boxes(before nonmax suppresion).
