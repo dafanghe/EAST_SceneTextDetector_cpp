@@ -5,10 +5,9 @@ To combine this detector with scene text recognizer for a full pipeline, checkou
 
 <p align="center">
   <img src="images/img_9120.jpg" width=1280 height=720>
-  <img src="images/img_9132.jpg" width=640 height=360>
-  <img src="images/img_9148.jpg" width=640 height=360>
-  <img src="images/img_9162.jpg" width=640 height=360>
-  <img src="images/img_9185.jpg" width=640 height=360>
+  <img src="images/img_9132.jpg" width=1280 height=720>
+  <img src="images/img_9162.jpg" width=1280 height=720>
+  <img src="images/img_9185.jpg" width=1280 height=720>
 </p>
 
 
