@@ -53,21 +53,15 @@ Download the pretrained detector model and put it in model/
    --input_dir=/path/to/test/images/ --output_dir=/path/to/write/output/directory
 
 # Model Description
-The detector training is based on the public [repo](https://github.com/argman/EAST) and also the proposed framework in the
-paper[TextContourNet: a Flexible and Effective Framework for Improving Scene Text Detection Architecture with a Multi-task Cascade](https://arxiv.org/abs/1809.03050).
+The detector training is based on the public [repo](https://github.com/argman/EAST).
 
 The python script for converting the trained model to the frozen graph will be provided.
-Basically the frozen graph output is all the decoded text boxes(before nonmax suppresion).
+Basically the frozen graph output is all the decoded text boxes(before nonmax suppresion) instead of the score_map and geometry_map.
 I implemented a simple nonmax suppresion based on polygon IOU.
 Boost::geometry is used for polygon related calculation.
 
 ### *Pretrained Models*
-Two pretrained models will be provided.
-One is baseline model trained with the original code in [repo](https://github.com/argman/EAST).
-Another model is trained with the framework(auxiliary loss) proposed in [paper](https://arxiv.org/abs/1809.03050)
-
-##Performance
-
+A pretrained frozen graph will be provided based on the original code in [repo](https://github.com/argman/EAST).
 
 # Reference and Related Projects
 - [EAST](http://openaccess.thecvf.com/content_cvpr_2017/papers/Zhou_EAST_An_Efficient_CVPR_2017_paper.pdf) EAST: an efficient and accurate scene text detector paper.
